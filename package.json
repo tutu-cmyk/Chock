@@ -2,7 +2,7 @@
   "name": "chock",
   "version": "0.1.0",
   "description": "Chock compiler — Phase 0: Chock → Python transpiler with structured diagnostics",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "chock": "dist/index.js"

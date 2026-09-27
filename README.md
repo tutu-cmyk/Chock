@@ -228,7 +228,7 @@ else:
 
 ## 许可证
 
-Apache-2.0
+MIT
 
 ---
 
@@ -456,4 +456,4 @@ else:
 
 ## License
 
-Apache-2.0
+MIT

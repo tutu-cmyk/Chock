@@ -1,0 +1,28 @@
+# Schema 优先：type 声明即 JSON Schema，Model.parse 做运行时校验
+module schema_demo
+
+import std/ai
+
+enum Priority:
+    low,
+    normal,
+    high
+
+type Summary:
+    title: String
+    points: List[String]
+    priority: Priority = Priority.normal
+
+fn summarize(doc: String) -> Result[Summary, Error]:
+    return ai.extract(doc, into = Summary, model = "qwen-max")
+
+fn main() -> Unit:
+    let r = Summary.parse('{"title": "周报", "points": ["完成A", "修复B"], "priority": "high"}')
+    if is_ok(r):
+        let s = r.value
+        print("标题：{s.title}")
+        for p in s.points:
+            print("  - {p}")
+        print("优先级：{s.priority}")
+    else:
+        print("解析失败：{r.error.message}")

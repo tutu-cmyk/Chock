@@ -1,0 +1,12 @@
+# IDE 本地配置
+.trae/
+
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+out/
+
+# 日志
+*.log

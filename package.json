@@ -1,0 +1,25 @@
+{
+  "name": "chock",
+  "version": "0.1.0",
+  "description": "Chock compiler — Phase 0: Chock → Python transpiler with structured diagnostics",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "chock": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "check": "node dist/index.js check",
+    "chock": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

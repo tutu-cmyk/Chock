@@ -1,0 +1,29 @@
+# Result[T, E] + '?' 传播 + User.parse 绑定
+module result_demo
+
+import std/http
+
+type User:
+    id: Int
+    name: String
+
+fn parse_user(raw: String) -> Result[User, Error]:
+    return User.parse(raw)
+
+async fn load_user(id: Int) -> Result[User, Error]:
+    let raw = http.get("https://example.com/users/{id}").await?
+    return User.parse(raw)?
+
+fn main() -> Unit:
+    # 成功路径：合法 JSON
+    let ok = parse_user('{"id": 7, "name": "阿强"}')
+    if is_ok(ok):
+        print("解析成功：{ok.value.name}")
+    else:
+        print("不会走到这里")
+    # 失败路径：字段类型错误 → Err
+    let bad = parse_user('{"id": "not-an-int", "name": "x"}')
+    if is_ok(bad):
+        print("unexpected")
+    else:
+        print("按预期被类型护栏拦截：{bad.error.message}")

@@ -1,0 +1,12 @@
+# parallel for：线程池并行执行，块结束后汇合
+module parallel_demo
+
+fn square(n: Int) -> Int:
+    return n * n
+
+fn main() -> Unit:
+    let data = [1, 2, 3, 4, 5, 6, 7, 8]
+    print("开始并行计算平方：")
+    parallel for x in data:
+        print("  {x} -> {square(x)}")
+    print("并行任务完成")

@@ -1,0 +1,22 @@
+# 意图锚点：@intent/@require/@ensure 在运行时强制业务契约
+module anchors_demo
+
+@intent "阶乘：输入非负，结果不小于 1"
+@require n >= 0
+@ensure result >= 1
+fn factorial(n: Int) -> Int:
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+# 多个 @ensure 各自生成独立校验 lambda
+@intent "折扣金额：金额非负，且结果不超过原价"
+@require amount >= 0
+@ensure 0 <= result
+@ensure result <= amount
+fn discounted(amount: Float, rate: Float) -> Float:
+    return amount * rate
+
+fn main() -> Unit:
+    print(factorial(5))
+    print(discounted(100.0, 0.8))

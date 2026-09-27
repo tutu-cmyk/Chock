@@ -1,0 +1,30 @@
+# 控制流：if/elif/else、while、for、match 表达式
+module control_demo
+
+fn fizzbuzz(n: Int) -> String:
+    if n % 15 == 0:
+        return "FizzBuzz"
+    elif n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
+    else:
+        return "{n}"
+
+fn discount(plan: String) -> Float:
+    let rate = match plan:
+        "pro" -> 0.9
+        "team" -> 0.8
+        _ -> 1.0
+    return rate
+
+fn main() -> Unit:
+    # while + 可变变量（var）
+    var i = 1
+    while i <= 6:
+        print(fizzbuzz(i))
+        i += 1
+    # for 迭代与 match 表达式
+    for x in range(3):
+        print("index {x}, team rate {discount('team')}")
+    print(discount("free"))

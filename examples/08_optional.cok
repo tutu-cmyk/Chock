@@ -1,0 +1,21 @@
+# 可选类型 T?：声明可空字段，!= null 收窄后使用
+module optional_demo
+
+type Profile:
+    nickname: String? = null
+    age: Int? = null
+
+fn label(p: Profile) -> String:
+    if p.nickname != null and p.age != null:
+        return "{p.nickname}（{p.age} 岁）"
+    if p.nickname != null:
+        return "{p.nickname}（年龄未填）"
+    return "匿名用户"
+
+fn main() -> Unit:
+    let a = Profile(nickname = "阿珍", age = 28)
+    let b = Profile(nickname = "阿强")
+    let c = Profile()
+    print(label(a))
+    print(label(b))
+    print(label(c))

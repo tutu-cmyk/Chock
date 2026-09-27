@@ -1,0 +1,17 @@
+# 幻觉样本：不存在的函数 / 变量 / 字段 / 枚举成员
+module errors_hallucination
+
+enum Plan:
+    free,
+    pro
+
+type User:
+    id: Int
+    name: String
+
+fn main() -> Unit:
+    let u = User(id = 1, name = "x")
+    print(fetch_remote_data(u))
+    print(u.email)
+    print(missing_variable)
+    print(Plan.enterprise)

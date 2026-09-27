@@ -1,0 +1,8 @@
+# 最小示例：函数、字符串插值、入口
+module hello
+
+fn greet(name: String) -> String:
+    return "你好，{name}！欢迎使用 Chock。"
+
+fn main() -> Unit:
+    print(greet("世界"))

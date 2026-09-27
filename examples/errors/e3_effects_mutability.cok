@@ -1,0 +1,12 @@
+# 效果与可变性样本：重赋值 let、对非 Result 使用 ?
+module errors_effects
+
+fn double(x: Int) -> Int:
+    return x * 2
+
+fn main() -> Unit:
+    let n = 1
+    n = 2
+    let v = double(3)?
+    print(n)
+    print(v)

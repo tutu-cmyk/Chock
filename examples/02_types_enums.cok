@@ -1,0 +1,26 @@
+# 枚举与记录类型：默认值、关键字构造、分支描述
+module types_demo
+
+enum Plan:
+    free,
+    pro,
+    team
+
+type User:
+    id: Int
+    name: String
+    plan: Plan = Plan.free
+    credits: Float = 0.0
+
+fn describe(u: User) -> String:
+    if u.plan == Plan.pro:
+        return "{u.name} 是专业版用户，余额 {u.credits}"
+    else:
+        return "{u.name} 是免费版用户"
+
+fn main() -> Unit:
+    let u = User(id = 1, name = "小明", plan = Plan.pro, credits = 12.5)
+    print(describe(u))
+    # 缺省字段使用 type 声明中的默认值
+    let v = User(id = 2, name = "小红")
+    print(describe(v))

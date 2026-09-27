@@ -1,0 +1,23 @@
+# 集合：List 与 Dict 的常用操作
+module collections_demo
+
+fn sum_list(xs: List[Int]) -> Int:
+    var total = 0
+    for x in xs:
+        total += x
+    return total
+
+fn main() -> Unit:
+    let nums = [1, 2, 3, 4, 5]
+    print("sum = {sum_list(nums)}")
+    print("len = {len(nums)}, first = {nums[0]}")
+    nums.append(6)
+    print("after append: {nums}")
+    let last = nums.pop()
+    print("popped: {last}")
+    # 字典：标识符键自动降为字符串键
+    let scores: Dict[String, Int] = {"alice": 90, "bob": 80}
+    let maybe = scores.get("alice")
+    if maybe != null:
+        print("alice score: {maybe}")
+    print("keys: {scores.keys()}")

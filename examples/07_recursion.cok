@@ -1,0 +1,26 @@
+# 递归函数与枚举 match
+module recursion_demo
+
+enum Sign:
+    neg,
+    zero,
+    pos
+
+fn sign_of(n: Int) -> Sign:
+    let s = match n:
+        0 -> Sign.zero
+        _ -> Sign.pos
+    if n < 0:
+        return Sign.neg
+    return s
+
+fn fib(n: Int) -> Int:
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+fn main() -> Unit:
+    for i in range(10):
+        print("fib({i}) = {fib(i)}")
+    print(sign_of(-3))
+    print(sign_of(0))

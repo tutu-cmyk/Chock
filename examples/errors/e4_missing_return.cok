@@ -1,0 +1,10 @@
+# 控制流样本：存在未 return 的路径 / 参数数量错误
+module errors_control
+
+fn classify(n: Int) -> String:
+    if n > 0:
+        return "positive"
+
+fn main() -> Unit:
+    print(classify(1))
+    print(classify(1, 2))

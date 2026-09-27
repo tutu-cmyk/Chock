@@ -1,0 +1,12 @@
+# 类型错误样本：实参/返回/条件/运算类型不匹配
+module errors_type
+
+fn add(a: Int, b: Int) -> Int:
+    return a + b
+
+fn main() -> Unit:
+    let x = add("1", 2)
+    if x:
+        print("non-bool condition")
+    let y: String = 123
+    print(y)

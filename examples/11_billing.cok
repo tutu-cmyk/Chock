@@ -1,0 +1,35 @@
+# 旗舰例：套餐计费 —— 锚点契约 + match 折扣 + parallel for 并行出账
+module billing
+
+enum Plan:
+    free,
+    pro,
+    team
+
+type User:
+    id: Int
+    name: String
+    plan: Plan = Plan.free
+    credits: Float = 0.0
+
+type Order:
+    id: Int
+    amount: Float
+
+@intent "计算用户本月应付金额：按套餐折扣，结果不为负且不超过原价"
+@require amount >= 0
+@ensure 0 <= result
+@ensure result <= amount
+fn bill(u: User, amount: Float) -> Float:
+    let rate = match u.plan:
+        Plan.pro -> 0.9
+        Plan.team -> 0.8
+        _ -> 1.0
+    return max(amount * rate, 0.0)
+
+fn main() -> Unit:
+    let u = User(id = 42, name = "小明", plan = Plan.pro)
+    let orders = [Order(id = 1, amount = 100.0), Order(id = 2, amount = 250.0), Order(id = 3, amount = 80.0)]
+    parallel for item in orders:
+        print("订单 {item.id}：应付 {bill(u, item.amount)}")
+    print("结算完成，用户余额视角 credits = {u.credits}")
